@@ -250,6 +250,15 @@ textarea { min-height: 120px; resize: vertical; }
   .stat-label { font-size: 0.9rem; }
   .split, .split-col, .stat-cards { width: 100%; }
 }
+/* Small phones in landscape and narrow devices: keep navbar content wrapped
+   to prevent the Book a Demo button from overflowing the container */
+@media (max-width: 573px) and (min-width: 481px) {
+  .navbar .container { display: grid; grid-template-columns: 1fr !important; grid-template-rows: auto auto; grid-template-areas: "brand" "links"; height: auto; row-gap: 6px; padding: 6px 10px; align-content: start; }
+  .brand { grid-area: brand; justify-self: start; }
+  .nav-links { grid-area: links; flex-wrap: wrap; justify-content: flex-start; gap: 6px 8px; width: 100%; justify-self: stretch; }
+  .nav-links a { padding: 6px 8px; }
+  .btn-small { padding: 6px 10px; }
+}
 /* Center CTA on extra small screens */
 @media (max-width: 395px) {
   .nav-links { justify-content: center; }
