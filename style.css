@@ -190,6 +190,16 @@ body::before {
   .raas .raas-grid { grid-template-columns: repeat(4, minmax(220px, 1fr)); }
   .support-cards { grid-template-columns: repeat(4, minmax(220px, 1fr)); }
 }
+
+/* Partner page: 4 items on first row, 1 on second row at desktop widths */
+@media (min-width: 1200px) {
+  .partner-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(240px, 1fr));
+    grid-auto-rows: auto;
+  }
+  .partner-cards > .card:nth-child(5) { grid-column: 1 / 2; }
+}
 .spec-list.center { text-align: center; list-style: none; padding: 0; margin: 14px 0 0; color: #334155; }
 .spec-list.center li { margin: 6px 0; }
 
