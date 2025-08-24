@@ -344,4 +344,11 @@ textarea { min-height: 120px; resize: vertical; }
   .robot-grid--two .spec-list.detailed { grid-template-columns: 1fr; }
 }
 
+/* ≥2194px: tighten image column so text never overflows and cards aren't too tall */
+@media (min-width: 2194px) {
+  .robot-grid--two .robot-figure { grid-template-columns: minmax(340px, 480px) 1fr; align-items: start; }
+  .robot-grid--two .robot-figure img { height: 340px; max-height: 360px; object-fit: contain; align-self: start; }
+  .robot-grid--two .spec-list.detailed { grid-template-columns: 1fr 1fr; }
+}
+
 
