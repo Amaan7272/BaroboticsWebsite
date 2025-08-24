@@ -172,7 +172,39 @@ body::before {
 .why-forwardx .why-bullets { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; list-style: none; padding: 0; margin: 8px 0 0; }
 .why-forwardx .why-bullets li { background: #fff; border: 1px solid #e5e7eb; border-radius: var(--radius); padding: 12px 14px; box-shadow: var(--shadow); font-weight: 600; color: #0b1b34; }
 
-.raas .raas-items { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 10px; }
+.raas .raas-items { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); margin-top: 8px; }
+/* RaaS paired layout: always feature chip above its description card */
+.raas .raas-features { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); margin-top: 8px; }
+.raas .raas-feature { display: grid; gap: 12px; grid-template-rows: auto 1fr; align-items: start; }
+
+/* At >=771px, center the third feature ("Scale as you grow") under the two columns */
+@media (min-width: 771px) {
+  .raas .raas-features { grid-template-columns: repeat(2, minmax(360px, 1fr)); }
+  .raas .raas-feature:nth-child(3) { grid-column: 1 / -1; justify-self: center; max-width: 720px; width: 100%; }
+}
+
+/* At >=1180px, show all three features in one row */
+@media (min-width: 1180px) {
+  .raas .raas-features { grid-template-columns: repeat(3, minmax(360px, 1fr)); }
+  .raas .raas-feature:nth-child(3) { grid-column: auto; justify-self: stretch; max-width: none; width: auto; }
+}
+
+/* Fine-tune vertical rhythm between 1206–1336px: add a little extra space
+   under the first chip so its card lines up with the other two */
+@media (min-width: 1206px) and (max-width: 1336px) {
+  .raas .raas-feature:first-child .raas-item { margin-bottom: 30px; }
+}
+
+/* Fine-tune between 1545–1595px: nudge first chip down so card aligns */
+@media (min-width: 1545px) and (max-width: 1595px) {
+  .raas .raas-feature:first-child .raas-item { margin-bottom: 30px; }
+}
+
+/* Fine-tune between 1596–1651px: nudge first two chips down to match third */
+@media (min-width: 1596px) and (max-width: 1651px) {
+  .raas .raas-feature:nth-child(1) .raas-item,
+  .raas .raas-feature:nth-child(2) .raas-item { margin-bottom: 30px; }
+}
 .raas-item {
   background: #fff;
   border: 1px solid #e5e7eb;
@@ -187,8 +219,14 @@ body::before {
 .raas-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); margin-top: 8px; }
 /* Solutions page: force 4-up layout on wide screens for RaaS and Support & Services */
 @media (min-width: 1100px) {
-  .raas .raas-grid { grid-template-columns: repeat(4, minmax(220px, 1fr)); }
+  .raas.raas--solutions .raas-grid { grid-template-columns: repeat(4, minmax(220px, 1fr)); }
   .support-cards { grid-template-columns: repeat(4, minmax(220px, 1fr)); }
+}
+
+/* Solutions - Client Outcomes: center third card under first two at 897–1351px */
+@media (min-width: 897px) and (max-width: 1351px) {
+  .outcomes-cards { grid-template-columns: repeat(2, minmax(420px, 1fr)); }
+  .outcomes-cards > .card:nth-child(3) { grid-column: 1 / -1; justify-self: center; max-width: 900px; }
 }
 
 /* Partner page: 4 items on first row, 1 on second row at desktop widths */
@@ -298,6 +336,15 @@ textarea { min-height: 120px; resize: vertical; }
 /* Small phones in landscape and narrow devices: keep navbar content wrapped
    to prevent the Book a Demo button from overflowing the container */
 @media (max-width: 573px) and (min-width: 481px) {
+  .navbar .container { display: grid; grid-template-columns: 1fr !important; grid-template-rows: auto auto; grid-template-areas: "brand" "links"; height: auto; row-gap: 6px; padding: 6px 10px; align-content: start; }
+  .brand { grid-area: brand; justify-self: start; }
+  .nav-links { grid-area: links; flex-wrap: wrap; justify-content: flex-start; gap: 6px 8px; width: 100%; justify-self: stretch; }
+  .nav-links a { padding: 6px 8px; }
+  .btn-small { padding: 6px 10px; }
+}
+
+/* Small tablets: stack navbar so Book button drops under (matches <=573px) */
+@media (max-width: 655px) and (min-width: 574px) {
   .navbar .container { display: grid; grid-template-columns: 1fr !important; grid-template-rows: auto auto; grid-template-areas: "brand" "links"; height: auto; row-gap: 6px; padding: 6px 10px; align-content: start; }
   .brand { grid-area: brand; justify-self: start; }
   .nav-links { grid-area: links; flex-wrap: wrap; justify-content: flex-start; gap: 6px 8px; width: 100%; justify-self: stretch; }
