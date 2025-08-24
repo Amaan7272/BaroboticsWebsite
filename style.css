@@ -195,8 +195,14 @@ body::before {
   .raas .raas-feature:first-child .raas-item { margin-bottom: 30px; }
 }
 
+/* Normalize spacing between 1426–1545px: remove added chip margin so card bottoms align */
+@media (min-width: 1426px) and (max-width: 1545px) {
+  .raas .raas-feature .raas-item { margin-bottom: 0; }
+  .raas .raas-feature:first-child { gap: 0; }
+}
+
 /* Fine-tune between 1545–1595px: nudge first chip down so card aligns */
-@media (min-width: 1545px) and (max-width: 1595px) {
+@media (min-width: 1337px) and (max-width: 1595px) {
   .raas .raas-feature:first-child .raas-item { margin-bottom: 30px; }
 }
 
@@ -221,6 +227,11 @@ body::before {
 @media (min-width: 1100px) {
   .raas.raas--solutions .raas-grid { grid-template-columns: repeat(4, minmax(220px, 1fr)); }
   .support-cards { grid-template-columns: repeat(4, minmax(220px, 1fr)); }
+}
+
+/* Solutions - Support & Services: 2x2 layout on tablets */
+@media (min-width: 720px) and (max-width: 964px) {
+  .support-cards { grid-template-columns: repeat(2, minmax(280px, 1fr)) !important; }
 }
 
 /* Solutions - Client Outcomes: center third card under first two at 897–1351px */
