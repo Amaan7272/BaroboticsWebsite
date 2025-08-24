@@ -211,6 +211,11 @@ body::before {
 .faq summary { cursor: pointer; font-weight: 600; color: #0b1b34; }
 .faq p { margin: 8px 0 0; color: #475569; }
 
+/* Wide screens: switch FAQ to 3 columns (2 rows) around 1450px+ */
+@media (min-width: 1450px) {
+  .faq .faq-list { grid-template-columns: repeat(3, minmax(280px, 1fr)); }
+}
+
 /* Prevent FAQ overflow on very small screens */
 @media (max-width: 586px) {
   .faq .faq-list { grid-template-columns: 1fr; max-width: 100%; }
