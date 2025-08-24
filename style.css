@@ -199,6 +199,11 @@ body::before {
 .faq summary { cursor: pointer; font-weight: 600; color: #0b1b34; }
 .faq p { margin: 8px 0 0; color: #475569; }
 
+/* Prevent FAQ overflow on very small screens */
+@media (max-width: 586px) {
+  .faq .faq-list { grid-template-columns: 1fr; max-width: 100%; }
+}
+
 .contact .cta-text { text-align: center; margin: 0 0 18px; color: #0b1b34; }
 .contact-form { max-width: 840px; margin: 0 auto; }
 .form-grid { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
