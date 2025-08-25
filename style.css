@@ -51,7 +51,15 @@ body::before {
 .navbar .container { display: grid; grid-template-columns: 1fr auto; align-items: center; height: 84px; max-width: var(--container); margin: 0 auto; padding: 0 12px; }
 .brand { font-size: 1.35rem; font-weight: 800; justify-self: start; }
 .nav-links a { font-size: 1.1rem; }
-.brand { font-weight: 700; color: var(--primary); text-decoration: none; }
+.brand { font-weight: 700; color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; }
+.brand-logo { height: 48px; width: auto; border-radius: 12px; display: block; }
+@media (max-width: 480px) { .brand-logo { height: 40px; } }
+/* Large screens: make logo bigger (double height) and increase navbar height */
+@media (min-width: 1400px) {
+  .brand-logo { height: 96px; }
+  .navbar .container { height: 110px; }
+}
+/* No further logo scaling beyond 1400px */
 .nav-links { list-style: none; display: flex; gap: 16px; margin: 0; padding: 0; align-items: center; }
 .nav-links a { color: #0b1b34; text-decoration: none; font-weight: 500; padding: 8px 10px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; }
 .nav-links a:hover { background: #f1f5f9; }
@@ -354,8 +362,9 @@ textarea { min-height: 120px; resize: vertical; }
   .btn-small { padding: 6px 10px; }
 }
 
-/* Small tablets: stack navbar so Book button drops under (matches <=573px) */
-@media (max-width: 655px) and (min-width: 574px) {
+/* Small tablets and narrow laptops: stack navbar so Book button drops under
+   Also covers 656–722px where the logo previously shrank; keep it on its own line */
+@media (max-width: 722px) and (min-width: 574px) {
   .navbar .container { display: grid; grid-template-columns: 1fr !important; grid-template-rows: auto auto; grid-template-areas: "brand" "links"; height: auto; row-gap: 6px; padding: 6px 10px; align-content: start; }
   .brand { grid-area: brand; justify-self: start; }
   .nav-links { grid-area: links; flex-wrap: wrap; justify-content: flex-start; gap: 6px 8px; width: 100%; justify-self: stretch; }
